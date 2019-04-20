@@ -1,4 +1,5 @@
 const express = require('express');
+const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const morgan = require('morgan');
@@ -9,6 +10,17 @@ const app = express();
 const PORT = process.env.PORT || 4000;
 
 const routes = require('./routes/api');
+
+// -- connect to mongodb
+mongoose
+  .connect('mongodb://localhost/ninjago', {
+    useNewUrlParser: true
+  })
+  .then(() => debug('DB Connection successful!'))
+  .catch((err) => {
+    debug('Database Error:');
+    debug(JSON.stringify(err));
+  });
 
 // -- middleware --
 app.use(bodyParser.json());

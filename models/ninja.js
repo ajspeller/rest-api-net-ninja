@@ -15,7 +15,7 @@ const NinjaSchema = new Schema({
     type: Boolean,
     default: false
   }
-  // add in geolocation
+  // TODO: add in geolocation
 });
 
 const Ninja = mongoose.model('ninja', NinjaSchema);
