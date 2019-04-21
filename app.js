@@ -14,7 +14,8 @@ const routes = require('./routes/api');
 // -- connect to mongodb
 mongoose
   .connect('mongodb://localhost/ninjago', {
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useCreateIndex: true
   })
   .then(() => debug('DB Connection successful!'))
   .catch((err) => {
