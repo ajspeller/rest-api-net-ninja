@@ -24,6 +24,7 @@ mongoose
   });
 
 // -- middleware --
+app.use(express.static('public'));
 // -- request body middleware
 app.use(bodyParser.json());
 // -- messaging middleware
