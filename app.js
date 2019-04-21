@@ -23,9 +23,20 @@ mongoose
   });
 
 // -- middleware --
+// -- request body middleware
 app.use(bodyParser.json());
+// -- messaging middleware
 app.use(morgan('dev'));
+// -- routing middleware
 app.use('/api', routes);
+
+// -- error handling middleware
+app.use((err, req, res, next) => {
+  debug(err);
+  res.status(422).send({
+    error: err.errors.name.message
+  });
+});
 
 app.listen(PORT, () => {
   debug(`Server started on port ... ${chalk.red(PORT)}`);
